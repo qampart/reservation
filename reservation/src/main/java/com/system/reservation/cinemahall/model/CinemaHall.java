@@ -1,9 +1,9 @@
-package com.system.reservation.movie.model;
+package com.system.reservation.cinemahall.model;
 
+import com.system.reservation.filmshow.model.FilmShow;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter

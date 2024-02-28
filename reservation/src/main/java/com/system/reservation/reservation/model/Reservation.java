@@ -1,7 +1,8 @@
 package com.system.reservation.reservation.model;
 
-import com.system.reservation.movie.model.FilmShow;
-import com.system.reservation.reservation.enums.Status;
+import com.system.reservation.filmshow.model.FilmShow;
+import com.system.reservation.reservation.enums.ReservationStatus;
+import com.system.reservation.ticket.model.Ticket;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,13 +24,15 @@ public class Reservation {
     private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
-    @OneToMany(targetEntity = SeatReservation.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<SeatReservation> seatReservations;
+//    @OneToMany(targetEntity = SeatTicket.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    private Set<SeatTicket> seatTickets;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private ReservationStatus reservationStatus;
     @ManyToOne
     @JoinColumn(name = "film_show_id", referencedColumnName = "id", nullable = false)
     private FilmShow filmShow;
     @OneToMany(targetEntity = Ticket.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Ticket> ticket;
+//    @OneToMany(targetEntity = Seat.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    private Set<Seat> seat;
 }

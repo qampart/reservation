@@ -1,13 +1,12 @@
 package com.system.reservation.reservation.service;
 
-import com.system.reservation.movie.model.FilmShow;
+import com.system.reservation.filmshow.model.FilmShow;
 import com.system.reservation.reservation.model.Reservation;
-import com.system.reservation.reservation.model.SeatReservation;
+import com.system.reservation.seatticket.model.SeatTicket;
+import com.system.reservation.ticket.model.Ticket;
 import com.system.reservation.reservation.repository.ReservationRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -27,17 +26,17 @@ public class ReservationService {
 
     @Transactional
     public Reservation addReservation(Reservation reservation){
-        FilmShow filmShow = reservation.getFilmShow();  // pobieram dane o seansie filmowym tzn data godzina, tytuł filmu itd., czyli najpierw dla mojej rezerwacji pobieram dane o seansie filmowym na ktory chce dokonac rezerwacji
-        Set<Reservation> reservations = filmShow.getReservations();  // pobieram info o rezerwacjach, które są zrobione na ten seans
-        Set<Integer> seatNumbers = new HashSet<>();
+        FilmShow filmShow = reservation.getFilmShow();
+        Set<Reservation> reservations = filmShow.getReservations();
+        Set<Set<SeatTicket>> seatNumbers = new HashSet<>();
         for(Reservation reservation1 : reservations) {
-            for (SeatReservation seatReservation : reservation1.getSeatReservations()) {
-                seatNumbers.add(seatReservation.getSeat().getSeatNumber());
+            for (Ticket ticket : reservation1.getTicket()) {
+                seatNumbers.add(ticket.getSeatTickets());
             }
         }
 
-        for (SeatReservation seatReservation : reservation.getSeatReservations()) {
-            if (seatNumbers.contains(seatReservation.getSeat().getSeatNumber())) {
+        for (Ticket ticket : reservation.getTicket()) {
+            if (seatNumbers.contains(ticket.getSeatTickets())) {
                 throw new RuntimeException("Seat not available");
             }
         }

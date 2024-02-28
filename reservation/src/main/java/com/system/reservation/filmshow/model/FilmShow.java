@@ -1,5 +1,7 @@
-package com.system.reservation.movie.model;
+package com.system.reservation.filmshow.model;
 
+import com.system.reservation.cinemahall.model.CinemaHall;
+import com.system.reservation.movie.model.Movie;
 import com.system.reservation.reservation.model.Reservation;
 import jakarta.persistence.*;
 import lombok.*;

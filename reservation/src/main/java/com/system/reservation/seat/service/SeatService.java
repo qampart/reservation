@@ -1,7 +1,7 @@
-package com.system.reservation.reservation.service;
+package com.system.reservation.seat.service;
 
-import com.system.reservation.reservation.model.Seat;
-import com.system.reservation.reservation.repository.SeatRepository;
+import com.system.reservation.seat.model.Seat;
+import com.system.reservation.seat.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

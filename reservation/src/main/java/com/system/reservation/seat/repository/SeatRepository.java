@@ -1,6 +1,6 @@
-package com.system.reservation.reservation.repository;
+package com.system.reservation.seat.repository;
 
-import com.system.reservation.reservation.model.Seat;
+import com.system.reservation.seat.model.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

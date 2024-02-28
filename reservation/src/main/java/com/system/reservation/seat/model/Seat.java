@@ -1,9 +1,9 @@
-package com.system.reservation.reservation.model;
+package com.system.reservation.seat.model;
 
+import com.system.reservation.seatticket.model.SeatTicket;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -21,9 +21,9 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_sequence")
     private Long id;
     private int seatNumber;
-    @OneToMany(targetEntity = SeatReservation.class, mappedBy = "seat", cascade = CascadeType.REMOVE)
-    private Set<SeatReservation> seatReservations;
-    @OneToMany(targetEntity = Ticket.class, mappedBy = "seat", cascade = CascadeType.REMOVE)
-    private Set<Ticket> ticket;
+    @OneToMany(targetEntity = SeatTicket.class, mappedBy = "seat", cascade = CascadeType.REMOVE)
+    private Set<SeatTicket> seatTickets;
+//    @ManyToOne @JoinColumn(name = "reservation_id", referencedColumnName = "id", nullable = false)
+//    private Reservation reservation;
 
 }

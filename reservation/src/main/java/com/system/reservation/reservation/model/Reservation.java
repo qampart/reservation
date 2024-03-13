@@ -7,13 +7,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "reservations")
@@ -31,8 +30,9 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "film_show_id", referencedColumnName = "id", nullable = false)
     private FilmShow filmShow;
-    @OneToMany(targetEntity = Ticket.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<Ticket> ticket;
+    @OneToMany
+    @JoinColumn(name = "ticket_id", referencedColumnName = "id")
+    private List<Ticket> tickets;
 //    @OneToMany(targetEntity = Seat.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 //    private Set<Seat> seat;
 }

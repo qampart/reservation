@@ -1,5 +1,6 @@
 package com.system.reservation.seatticket.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.system.reservation.seat.model.Seat;
 import com.system.reservation.ticket.model.Ticket;
 import jakarta.persistence.*;
@@ -9,7 +10,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "seat_tickets")

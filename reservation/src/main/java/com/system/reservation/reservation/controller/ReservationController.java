@@ -1,5 +1,6 @@
 package com.system.reservation.reservation.controller;
 
+import com.system.reservation.reservation.enums.ReservationStatus;
 import com.system.reservation.reservation.model.Reservation;
 import com.system.reservation.reservation.service.ReservationService;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Reservation> getReservations(){
         return reservationService.getAllReservations();
     }
@@ -32,9 +33,15 @@ public class ReservationController {
         return reservationService.getById(id);
     }
 
-    @DeleteMapping(path = {"/{id}"})
+    @DeleteMapping({"/{id}"})
     public void deleteReservationById(@PathVariable Long id){
          reservationService.deleteByid(id);
     }
+
+    @PostMapping("/{id}")
+    public ReservationStatus checkReservationStatus(@PathVariable Long id){
+        return reservationService.checkReservationStatus(id);
+    }
+
 
 }

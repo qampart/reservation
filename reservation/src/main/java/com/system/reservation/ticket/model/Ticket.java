@@ -1,4 +1,6 @@
 package com.system.reservation.ticket.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.system.reservation.ticket.enums.TicketStatus;
 import com.system.reservation.ticket.enums.TicketType;
 import com.system.reservation.reservation.model.Reservation;
@@ -6,16 +8,16 @@ import com.system.reservation.seatticket.model.SeatTicket;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
-@Table(name = "tickets")
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
@@ -26,10 +28,8 @@ public class Ticket {
     private TicketType type;
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
-    @OneToMany(targetEntity = SeatTicket.class, mappedBy = "ticket", cascade = CascadeType.REMOVE)
-    private Set<SeatTicket> seatTickets;
-    @ManyToOne @JoinColumn(name = "reservation_id", referencedColumnName = "id", nullable = false)
+    @OneToMany @JoinColumn(name = "seat_ticket_id", referencedColumnName = "id", nullable = false)
+    private List<SeatTicket> seatTickets;
+    @ManyToOne @JoinColumn(name = "reservation_id", referencedColumnName = "id")
     private Reservation reservation;
-
-
 }

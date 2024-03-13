@@ -1,16 +1,17 @@
 package com.system.reservation.seat.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.system.reservation.seatticket.model.SeatTicket;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "seats")
@@ -21,8 +22,9 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_sequence")
     private Long id;
     private int seatNumber;
-    @OneToMany(targetEntity = SeatTicket.class, mappedBy = "seat", cascade = CascadeType.REMOVE)
-    private Set<SeatTicket> seatTickets;
+    @OneToMany
+    @JoinColumn (name = "seat_ticket_id2", referencedColumnName = "id", nullable = false)
+    private List<SeatTicket> seatTickets;
 //    @ManyToOne @JoinColumn(name = "reservation_id", referencedColumnName = "id", nullable = false)
 //    private Reservation reservation;
 

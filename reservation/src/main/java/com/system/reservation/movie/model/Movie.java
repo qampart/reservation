@@ -1,16 +1,18 @@
 package com.system.reservation.movie.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.system.reservation.filmshow.model.FilmShow;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name = "movies")
@@ -22,6 +24,9 @@ public class Movie {
     private Long id;
     private String name;
     private int length;
-    @OneToMany(targetEntity = FilmShow.class, mappedBy = "movie", cascade = CascadeType.REMOVE)
-    private Set<FilmShow> filmShows;
+    @OneToMany
+    @JoinColumn(name = "film_show_id", referencedColumnName = "id")
+    private List<FilmShow> filmShows;
+
+
 }

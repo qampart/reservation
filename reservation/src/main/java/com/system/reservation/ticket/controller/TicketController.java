@@ -1,7 +1,6 @@
 package com.system.reservation.ticket.controller;
 
 
-import com.system.reservation.seatticket.service.SeatTicketService;
 import com.system.reservation.ticket.enums.TicketStatus;
 import com.system.reservation.ticket.model.Ticket;
 import com.system.reservation.ticket.service.TicketService;
@@ -10,7 +9,6 @@ import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,8 +1,5 @@
 package com.system.reservation.filmshow.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.system.reservation.cinemahall.model.CinemaHall;
 import com.system.reservation.movie.model.Movie;
 import com.system.reservation.reservation.model.Reservation;
@@ -11,7 +8,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter

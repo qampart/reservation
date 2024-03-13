@@ -1,12 +1,10 @@
 package com.system.reservation.seat.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.system.reservation.seatticket.model.SeatTicket;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter

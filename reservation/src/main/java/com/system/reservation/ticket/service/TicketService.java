@@ -1,6 +1,5 @@
 package com.system.reservation.ticket.service;
 
-import com.system.reservation.seatticket.model.SeatTicket;
 import com.system.reservation.ticket.enums.TicketStatus;
 import com.system.reservation.ticket.model.Ticket;
 import com.system.reservation.ticket.repository.TicketRepository;

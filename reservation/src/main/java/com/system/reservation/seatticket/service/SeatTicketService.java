@@ -1,13 +1,11 @@
 package com.system.reservation.seatticket.service;
 
-import com.system.reservation.ticket.enums.TicketStatus;
 import com.system.reservation.seatticket.model.SeatTicket;
 import com.system.reservation.seatticket.repository.SeatTicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SeatTicketService {

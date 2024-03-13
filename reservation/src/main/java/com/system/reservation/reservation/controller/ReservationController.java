@@ -4,8 +4,6 @@ import com.system.reservation.reservation.enums.ReservationStatus;
 import com.system.reservation.reservation.model.Reservation;
 import com.system.reservation.reservation.service.ReservationService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

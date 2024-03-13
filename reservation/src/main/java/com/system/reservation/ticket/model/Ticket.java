@@ -1,15 +1,13 @@
 package com.system.reservation.ticket.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.system.reservation.ticket.enums.TicketStatus;
-import com.system.reservation.ticket.enums.TicketType;
+
 import com.system.reservation.reservation.model.Reservation;
 import com.system.reservation.seatticket.model.SeatTicket;
+import com.system.reservation.ticket.enums.TicketStatus;
+import com.system.reservation.ticket.enums.TicketType;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter

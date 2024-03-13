@@ -1,5 +1,6 @@
 package com.system.reservation.ticket.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.system.reservation.reservation.model.Reservation;
 import com.system.reservation.seatticket.model.SeatTicket;
 import com.system.reservation.ticket.enums.TicketStatus;
@@ -26,8 +27,8 @@ public class Ticket {
     private TicketType type;
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
-    @OneToMany @JoinColumn(name = "seat_ticket_id", referencedColumnName = "id", nullable = false)
-    private List<SeatTicket> seatTickets;
-    @ManyToOne @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    @JsonIgnore
     private Reservation reservation;
 }

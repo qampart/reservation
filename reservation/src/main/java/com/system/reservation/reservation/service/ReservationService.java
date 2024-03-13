@@ -5,6 +5,7 @@ import com.system.reservation.reservation.enums.ReservationStatus;
 import com.system.reservation.reservation.model.Reservation;
 import com.system.reservation.reservation.repository.ReservationRepository;
 import com.system.reservation.seatticket.model.SeatTicket;
+import com.system.reservation.seatticket.repository.SeatTicketRepository;
 import com.system.reservation.ticket.model.Ticket;
 import com.system.reservation.ticket.repository.TicketRepository;
 import jakarta.transaction.Transactional;
@@ -19,6 +20,7 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final TicketRepository ticketRepository;
+    private final SeatTicketRepository seatTicketRepository;
 
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
@@ -30,22 +32,18 @@ public class ReservationService {
         List<Reservation> reservations = filmShow.getReservations();
         Set<SeatTicket> seatNumbers = new HashSet<>();
 
-
-//        for(Reservation reservation1 : reservations) {
-//            for (Ticket ticket : reservation1.getTickest()) {
-//                seatNumbers.add(ticket.getSeatTickets());
-//            }
-//        }
-        // TODO: 13.03.2024 sprawdzic czy wolne miejsca
-
-        for (Ticket ticket : reservation.getTickets()) {
-            if (seatNumbers.contains(ticket.getSeatTickets())) {
-                throw new RuntimeException("Seat not available");
-            }
+        List<Ticket> tickets = reservation.getTickets();
+        for(Ticket ticket : tickets) {
+            ticket.setReservation(reservation);
+            ticketRepository.save(ticket);
+//            SeatTicket seatTicket = ticket.getSeatTicket();
+//            seatTicket.setTicket(ticket);
+//            seatTicketRepository.save(seatTicket);
         }
 
         return reservationRepository.save(reservation);
     }
+
 
     public Optional<Reservation> getById(Long id) {
         return reservationRepository.findById(id);

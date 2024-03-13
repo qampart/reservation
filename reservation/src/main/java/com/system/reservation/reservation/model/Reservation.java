@@ -23,16 +23,12 @@ public class Reservation {
     private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
-//    @OneToMany(targetEntity = SeatTicket.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-//    private Set<SeatTicket> seatTickets;
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
     @ManyToOne
     @JoinColumn(name = "film_show_id", referencedColumnName = "id", nullable = false)
     private FilmShow filmShow;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     private List<Ticket> tickets;
-//    @OneToMany(targetEntity = Seat.class, mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-//    private Set<Seat> seat;
 }

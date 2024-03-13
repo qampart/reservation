@@ -1,6 +1,7 @@
 package com.system.reservation.seatticket.model;
 
-import com.system.reservation.seat.model.Seat;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.system.reservation.ticket.model.Ticket;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,10 +19,9 @@ public class SeatTicket {
     @SequenceGenerator(name = "seat_tickets_sequence", sequenceName = "seat_tickets_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_tickets_sequence")
     private Long id;
-    @ManyToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ticket_id", referencedColumnName = "id", nullable = false)
+    @JsonIgnore
     private Ticket ticket;
-    @ManyToOne
-    @JoinColumn(name = "seat_id", referencedColumnName = "id", nullable = false)
-    private Seat seat;
+    private Long seatId;
 }

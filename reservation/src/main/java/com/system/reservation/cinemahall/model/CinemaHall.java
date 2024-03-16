@@ -16,12 +16,12 @@ import java.util.List;
 public class CinemaHall {
 
     @Id
-    @SequenceGenerator(name = "movie_sequence", sequenceName = "movie_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_sequence")
+    @SequenceGenerator(name = "cinema_halls_seq", sequenceName = "cinema_halls_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cinema_halls_seq")
     private Long id;
     private String name;
     private Integer capacity;
-    @OneToMany @JoinColumn(name = "film_show_id", referencedColumnName = "id", nullable = false)
+    @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL)
     private List<FilmShow> filmShows;
 
 }

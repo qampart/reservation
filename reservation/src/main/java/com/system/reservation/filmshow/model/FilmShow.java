@@ -1,5 +1,6 @@
 package com.system.reservation.filmshow.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.system.reservation.cinemahall.model.CinemaHall;
 import com.system.reservation.movie.model.Movie;
 import com.system.reservation.reservation.model.Reservation;
@@ -23,13 +24,14 @@ public class FilmShow {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "film_show_sequence")
     private Long id;
     private LocalDateTime filmLocalDateTime;
-    @OneToMany
-    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "filmShow", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "cinema_hall_id", referencedColumnName = "id")
     private CinemaHall cinemaHall;
 

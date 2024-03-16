@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "ticket")
+@Table(name = "tickets")
 public class Ticket {
 
     @Id
@@ -24,9 +24,9 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticket_sequence")
     private Long id;
     @Enumerated(EnumType.STRING)
-    private TicketType type;
+    private TicketType ticketType;
     @Enumerated(EnumType.STRING)
-    private TicketStatus status;
+    private TicketStatus ticketStatus;
     @ManyToOne
     @JoinColumn(name = "reservation_id", referencedColumnName = "id")
     @JsonIgnore

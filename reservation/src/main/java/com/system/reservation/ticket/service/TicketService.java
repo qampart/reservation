@@ -19,7 +19,7 @@ public class TicketService {
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
 
         if (optionalTicket.isPresent()) {
-            TicketStatus status = optionalTicket.get().getStatus();
+            TicketStatus status = optionalTicket.get().getTicketStatus();
             if (status.equals(TicketStatus.INVALID)) {
                 System.out.println("Ticket with " + id + " is invalid");
             }
@@ -34,10 +34,10 @@ public class TicketService {
 
         Optional<Ticket> optionalTicket = ticketRepository.findById(id);
 
-        TicketStatus status = optionalTicket.get().getStatus();
+        TicketStatus status = optionalTicket.get().getTicketStatus();
 
         if (optionalTicket.isPresent() &&  optionalTicket.get().getReservation().getEndDate().isAfter(optionalTicket.get().getReservation().getEndDate())){
-            optionalTicket.get().setStatus(TicketStatus.INVALID);
+            optionalTicket.get().setTicketStatus(TicketStatus.INVALID);
         }
         else{
             throw new RuntimeException("Ticket with ID " + id + " does not exists");
@@ -48,7 +48,7 @@ public class TicketService {
 
     public boolean checkIfValid(Long id) {
         Optional<Ticket> ticket = ticketRepository.findById(id);
-        return ticket.isPresent() && ticket.get().getStatus().equals(TicketStatus.VALID);
+        return ticket.isPresent() && ticket.get().getTicketStatus().equals(TicketStatus.VALID);
     }
 
     public List<Ticket> getAllTickets() {

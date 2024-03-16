@@ -21,8 +21,7 @@ public class Movie {
     private Long id;
     private String name;
     private int length;
-    @OneToMany
-    @JoinColumn(name = "film_show_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<FilmShow> filmShows;
 
 

@@ -1,7 +1,9 @@
+CREATE SEQUENCE ticket_sequence START WITH 1 INCREMENT BY 1;
+
 CREATE TABLE tickets
 (
-    id             bigint primary key,
-    ticket_type    varchar(15),
-    ticket_status  varchar(15),
-    reservation_id bigint
-)
+    id             BIGINT PRIMARY KEY DEFAULT nextval('ticket_sequence'),
+    ticket_type    VARCHAR(15),
+    ticket_status  VARCHAR(15),
+    reservation_id BIGINT
+);
